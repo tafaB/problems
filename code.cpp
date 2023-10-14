@@ -37,24 +37,27 @@ int main() {
     return 0;
 }
 void solve() {
-    int n, k;
-    cin >> n >> k;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-    vector<int> b = a;
-    sort(all(b));
-    int l = 0, r = n - 1;
-    int index=0;
-    vector<int> ans(k+1, 0);
-    while (l<=r) {
-        if(a[l]>=b[index] && a[r]>=b[index]) ans[b[index]]=r-l+1, index++;
-        else if(a[l]<b[index]) l++;
-        else if(a[r]<b[index]) r--;
-        if(index>=n)break;
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> g(n);
+    vector<pair<int, int>> edges;
+    int index = 0;
+    map<int, int> number_index;
+    vector<int> v;
+    for (int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+        edges.push_back({x,y});
+        if(number_index[x]==0) v.push_back(x), number_index[x]++;
+        if(number_index[y]==0) v.push_back(y), number_index[y]++;
     }
-    for (int i = 1; i <= k; i++) {
-        cout << 2*ans[i] << " ";
+    for(int i=0; i<v.size(); i++) number_index[v[i]]=i;
+    for(int i=0; i<m; i++){
+        g[number_index[edges[i].first]].push_back(number_index[edges[i].second]);
+        g[number_index[edges[i].second]].push_back(number_index[edges[i].first]);
     }
-    cout << endl;
+    int leafs = 0;
+    for(int i=0; i<g.size(); i++)
+        if(g[i].size()==1) leafs++;
+    cout<<m-leafs<<" "<<leafs/(m-leafs)<<endl;
 }
