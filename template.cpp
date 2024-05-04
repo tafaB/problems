@@ -1,36 +1,38 @@
 #include "bits/stdc++.h"
+#include <cstdio>
 #ifndef ONLINE_JUDGE
 #include "bits/debug.h"
 #endif
-#define SWAP(x, y, T) do { T z = x; x = y; y = z; } while (0)
+#define SWAP(x, y, T)                                                          \
+  do {                                                                         \
+    T z = x;                                                                   \
+    x = y;                                                                     \
+    y = z;                                                                     \
+  } while (0)
 #define bin_to_int(BIN_STR) stoi(BIN_STR, 0, 2);
 #define all(x) x.begin(), x.end()
 #define endl '\n'
 using namespace std;
 typedef long long int ll;
 typedef vector<ll> vi;
-typedef priority_queue<ll> max_heap;
-typedef priority_queue<ll, vector<ll>, greater<ll> > min_heap;
-typedef pair<ll,ll> pi;
-typedef map<ll,ll> mi; 
+typedef pair<ll, ll> pi;
+typedef map<ll, ll> mi;
 typedef vi::iterator vi_it;
 typedef mi::iterator mi_it;
-const ll MOD = 1e9 + 7;
+template <typename T> using min_heap = priority_queue<T, vector<T>, greater<T>>;
+template <typename T> using max_heap = priority_queue<T>;
+template <typename T>
+using custom_heap = priority_queue<T, vector<T>, function<bool(T, T)>>;
 void solve();
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+int main() {
 #ifndef ONLINE_JUDGE
-    freopen("file.in", "r", stdin);
+  freopen("file.in", "r", stdin);
 #endif
-    ll t=1, i=1;
-    cin>>t;
-    while(t--){
-        cout<<"Case #"<<i<<": ";
-        solve(), i++;
-    }
-    return 0;
+  ll t = 1;
+  cin >> t;
+  while (t--)
+    solve();
+  return 0;
 }
-void solve(){
-}
+
+void solve() {}
